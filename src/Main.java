@@ -12,46 +12,46 @@ public class Main {
 
         if (year % 400 == 0 && year % 100 != 0 || year % 4 == 0 && year >= 1584) {
             System.out.println(year + " год является високосным");
-        } else if (year < 1584) {
-            System.out.println("В " + year + " году посчёты не велись");
         } else {
             System.out.println(year + " год не является високосным");
         }
     }
 
     //    Задача 2 МЕТОД
-    public static int Calculate_OS(int yearOfDevice, char oS) {
-        yearOfDevice = yearOfDevice;
-        oS = oS;
-        if (oS == 0 && yearOfDevice < 2015) {
-            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-        } else if (oS == 1 && yearOfDevice < 2015) {
-            System.out.println("Установите облегченную версию приложения для Android по ссылке");
-        } else if (oS == 0 && yearOfDevice >= 2015) {
-            System.out.println("Установите версию приложения для iOS по ссылке");
-        } else if (oS == 1 && yearOfDevice >= 2015) {
-            System.out.println("Установите версию приложения для Android по ссылке");
+    public static void checkOS(int mobailOS, int mobailYear) {
+        String mobailOsName;
+        switch (mobailOS) {
+            case 0:
+                mobailOsName = "ios";
+                break;
+            case 1:
+                mobailOsName = "Android";
+                break;
+            default:
+                mobailOsName = "Неизвестная ОС";
         }
-        return yearOfDevice;
+        int currentYear = LocalDate.now().getYear();
+        if (currentYear != mobailYear) {
+            System.out.println("Для ОС " + mobailOsName + " установите облегчёнуую версию");
+        } else {
+            System.out.println("Для ОС " + mobailOsName + " установите обычную версию");
+        }
     }
-//    Задача 3 МЕТОД
-public static int CalculateDelivery(int deliveryDistance) {
-    if (deliveryDistance <= 20) {
-        System.out.println("Потребуется дней 1");
-    } else if (deliveryDistance > 20 && deliveryDistance <= 60) {
-        System.out.println("Потребуется дней 2");
-    } else if (deliveryDistance > 60 && deliveryDistance <= 100) {
-        System.out.println("Потребуется дней 3");
-    } else {
-        System.out.println("Доставки нет");
+
+    //    Задача 3 МЕТОД
+    public static int calculateDelivery(int deliveryDistance) {
+        if (deliveryDistance <= 20) {
+            System.out.println("Потребуется дней 1");
+        } else if (deliveryDistance > 20 && deliveryDistance <= 60) {
+            System.out.println("Потребуется дней 2");
+        } else if (deliveryDistance > 60 && deliveryDistance <= 100) {
+            System.out.println("Потребуется дней 3");
+        } else {
+            System.out.println("Доставки нет");
+        }
+        return deliveryDistance;
     }
-    return deliveryDistance;
-}
-
-//    }
-
-
-    //    public static void printissues(int issuesCount) {
+//     public static void printissues(int issuesCount) {
 //        System.out.println(issuesCount);
 //    }
 //
@@ -73,9 +73,22 @@ public static int CalculateDelivery(int deliveryDistance) {
 //
 //    }
     public static void main(String[] args) {
-        calculateLeapYear (2020);
-        calculateLeapYear (2023);
-        calculateLeapYear (2024);
+        System.out.println("Задача 1");
+        calculateLeapYear(2020);
+        calculateLeapYear(2023);
+        calculateLeapYear(2024);
+
+        System.out.println("Задача 2");
+        checkOS(1, 2020);
+        checkOS(0, 2024);
+        checkOS(1, 2024);
+        checkOS(0, 2020);
+
+        System.out.println("Задача 3");
+        calculateDelivery(15);
+        calculateDelivery(25);
+        calculateDelivery(70);
+        calculateDelivery(105);
 
 //        int[] issuesByMonths = {4, 6, 7, 9, 2, 5, 12, 3, 7, 10, 6, 7, 1, 8};
 //        printSeparator();
@@ -88,16 +101,6 @@ public static int CalculateDelivery(int deliveryDistance) {
 //        printSeparator();
 //        int tonal = sum(issuesByMonths);
 //        printissues(tonal);
-
-
-//        Задача 2
-        int clientDeviceYear = LocalDate.now().getYear();
-        char clientOS = 1;
-        Calculate_OS(clientDeviceYear, clientOS);
-
-//            Задача 3
-        int deliveryDistance = 37;
-        CalculateDelivery(deliveryDistance);
 
     }
 }
